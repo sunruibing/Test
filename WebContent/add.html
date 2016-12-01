@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+<link rel="stylesheet" href="assets/css/pintuer.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+<script type="text/javascript"
+	src="assets/js/jquery/jquery-3.1.0.min.js"></script>
+<script src="assets/js/jquery/jquery.js"></script>
+<script src="assets/js/pintuer.js"></script>
+<script>
+$.ajax({
+	 url:"http://127.0.0.1:80/Test/FindSectionList",
+    type:"post",
+    dataType:"json",
+    success:function(data){
+    	
+   	 var sectionList = "<option value='0'>请选择科室</option>";
+   	 
+   	 $.each(data, function(index, section){
+   		 sectionList += "<option value=" +section["id"]+ ">" +section["name"]+ "</option>";
+   	 });
+   	 $("#section").html(sectionList);
+
+    }
+});
+</script>
+</head>
+
+<body>
+	<div class="panel admin-panel">
+		<div class="panel-head" id="add">
+			<strong><span class="icon-pencil-square-o"></span>增加内容</strong>
+		</div>
+		<div class="body-content">
+			<form method="post" class="form-x" action="">
+				<div class="form-group">
+					<div class="label">
+						<label>疾病名：</label>
+					</div>
+					<div class="field">
+						<input type="text" class="input w50" value="" name="title"
+							data-validate="required:请输入标题" />
+						<div class="tips"></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+						<label>妈妈头像：</label>
+					</div>
+					<div class="field">
+						<input type="file" id="url1" name="img" class="input tips"
+							style="width: 25%; float: left;" value="你好" data-toggle="hover"
+							data-place="right" data-image="" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+						<label>医生头像：</label>
+					</div>
+					<div class="field">
+						<input type="file" id="url1" name="img" class="input tips"
+							style="width: 25%; float: left;" value="" data-toggle="hover"
+							data-place="right" data-image="" />
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<div class="label">
+						<label>分类标题：</label>
+					</div>
+					<div class="field">
+						<select id="section" class="input w50">
+						</select>
+						<div class="tips"></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+						<label>简介：</label>
+					</div>
+					<div class="field">
+						<textarea class="input" name="note" style="height: 90px;"></textarea>
+						<div class="tips"></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+						<label>妈咪提问：</label>
+					</div>
+					<div class="field">
+						<textarea name="content" class="input"
+							style="height: 60px; border: 1px solid #ddd;"></textarea>
+						<div class="tips"></div>
+					</div>
+				</div>
+
+				<div class="clear"></div>
+				<div class="form-group">
+					<div class="label">
+						<label>提问内容：</label>
+					</div>
+					<div class="field">
+						<input type="text" class="input" name="s_title" value="" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+						<label>医生回复：</label>
+					</div>
+					<div class="field">
+						<input type="text" class="input" name="s_keywords" value="" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+						<label>回复内容：</label>
+					</div>
+					<div class="field">
+						<textarea class="input" name="s_desc"
+							style="height: 80px;"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+						<label>病因：</label>
+					</div>
+					<div class="field">
+						<textarea class="input" name="s_desc"
+							style="height: 80px;"></textarea>
+						<div class="tips"></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+						<label>温馨提示：</label>
+					</div>
+					<div class="field">
+						<textarea class="input" name="s_desc"
+							style="height: 50px;"></textarea>
+						<div class="tips"></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="field">
+						<button id="addCyclopedia"
+							class="button bg-main icon-check-square-o">提交</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+<script>
+$(document).ready(function(){
+	$("#addCyclopedia").click(function(){
+		
+		var url1 = document.form1.url1.value;
+		alert(url1);
+		var url2 = document.form1.url2.value;
+		var title = document.form1.title.value;
+		var note = document.form1.note.value;
+		
+		 $.ajax({ 
+
+	        	url:"http://127.0.0.1:80/Test/error", 
+
+	            type: 'post', 
+
+	            dataType:'json',
+
+	            data: $(".form-x").serializeArray(),
+	            success: function(msg) {
+	            	alert("添加成功");
+	            }
+		 });
+		
+	});
+		 return false;
+});
+
+</script>
+</html>
