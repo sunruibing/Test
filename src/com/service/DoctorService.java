@@ -11,7 +11,6 @@ import com.po.Doctor;
 import com.util.DBUtil;
 
 
-
 /**
  * 医生相关的数据操作层
  * 
@@ -25,23 +24,18 @@ import com.util.DBUtil;
  * 2016年9月20日
  */
 public class DoctorService {
-
-	
 	//查询所有医生
 	public List<Map<String, Object>> queryDoctorList() throws SQLException{
 		
-		String sql = " SELECT id, username, name, icon, title, section, adept, chat_cost, hospital FROM doctor ";
+		String sql = " SELECT id, username, name, icon, title, section, adept, chat_cost, hospital, city FROM doctor ";
 		DBUtil dbUtil = new DBUtil(sql);
-		
 
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		
 		ResultSet result = null;
 		try {
 			result  = dbUtil.pst.executeQuery();
-
 			while (result.next()) {
-				
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("id", result.getInt("id"));
 				map.put("username", result.getString("username"));
@@ -52,6 +46,7 @@ public class DoctorService {
 				map.put("adept", result.getString("adept"));
 				map.put("chatCost", result.getString("chat_cost"));
 				map.put("hospital", result.getString("hospital"));
+				map.put("city", result.getString("city"));
 				
 				list.add(map);
 			}

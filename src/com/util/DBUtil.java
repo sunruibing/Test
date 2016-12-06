@@ -42,7 +42,7 @@ public class DBUtil {
             
             
             if(conn != null){
-            	//System.out.println("Test:Connection successful!"+sum++);
+            	System.out.println("Test:Connection successful!"+sum++);
             	pst = conn.prepareStatement(sql);
             }
             

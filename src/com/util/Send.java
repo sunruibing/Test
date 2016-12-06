@@ -1,12 +1,7 @@
-package com.servlet.user;
+package com.util;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.io.StringReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,8 +20,11 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.util.MsgCode;
-
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import redis.clients.jedis.Jedis;
 
 
@@ -44,20 +42,20 @@ public class Send extends HttpServlet {
 	
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
 	}
 	
 	
 	
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String phone = request.getParameter("phone");
+		String phone = req.getParameter("phone");
 		
 		
-		response.setContentType("application/text");
-		response.setCharacterEncoding("utf-8");
+		resp.setCharacterEncoding("utf-8");
+		resp.setContentType("application/json");
 		
 		
 		if(phone != null && !"".equals(phone)){
@@ -67,32 +65,19 @@ public class Send extends HttpServlet {
 				String code = MsgCode.rendom();
 				
 				
-				PrintWriter out = null;
-				BufferedReader in = null;
-				String result = "";
+				OkHttpClient client = new OkHttpClient();
+				MediaType MEDIA_TYPE = MediaType.parse("application/x-www-form-urlencoded;charset=utf-8");
+				String postBody = "action=send&userid=3303&account=giy20160909&password=123456&mobile="+phone+"&content=你好，你的验证码是"+code+"。10分钟内有效！【国健医疗】&sendTime=&extno=";
 				
-				
-				URL url = new URL("http://121.43.192.197:8888/sms.aspx");
-				URLConnection httpConn = url.openConnection();
-				httpConn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-				
-				
-				httpConn.setDoOutput(true);
-				httpConn.setDoInput(true);
-				httpConn.setUseCaches(false);
-				
-				
-				out = new PrintWriter(httpConn.getOutputStream());
-				out.print("action=send&userid=3303&account=giy20160909&password=123456&mobile="+phone+"&content=你好，你的验证码是"+code+"。10分钟内有效！【国建医疗】&sendTime=&extno=");
-				out.flush();
-				
-				
-				in = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));
-	            String line;
+				Request request = new Request.Builder()
+			            .url("http://121.43.192.197:8888/sms.aspx")
+			            .post(RequestBody.create(MEDIA_TYPE, postBody))
+			            .build();
+
+			    Response response = client.newCall(request).execute();
+			    String result = response.body().string();
 	            
-	            while ((line = in.readLine()) != null) {
-	                result += line;
-	            }
+	           
 	            
 	            
 				try {
@@ -115,7 +100,7 @@ public class Send extends HttpServlet {
 							map.put(nodeValue.getNodeName(), nodeValue.getTextContent());
 						}
 					}
-					System.out.println(map);
+					//System.out.print(map);
 					
 					
 					if("ok".equals(map.get("message"))){
@@ -124,23 +109,23 @@ public class Send extends HttpServlet {
 						Jedis jedis = new Jedis("127.0.0.1", 6379);
 						jedis.set(phone, code);
 						
-						response.getWriter().print(0);
+						resp.getWriter().print(0);
 					}else{
-						response.getWriter().print(2);
+						resp.getWriter().print(2);
 					}
 				} catch (ParserConfigurationException e) {
 					e.printStackTrace();
-					response.getWriter().print(2);
+					resp.getWriter().print(2);
 				} catch (SAXException e) {
 					e.printStackTrace();
-					response.getWriter().print(2);
+					resp.getWriter().print(2);
 				}
 				
 			}else{
-				response.getWriter().print(1);//手机号格式不对
+				resp.getWriter().print(1);//手机号格式不对
 			}
 		}else{
-			response.getWriter().print(1);//手机号不能为空
+			resp.getWriter().print(1);//手机号不能为空
 		}
 	}
 	
