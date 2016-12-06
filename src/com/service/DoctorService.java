@@ -27,7 +27,7 @@ public class DoctorService {
 	//查询所有医生
 	public List<Map<String, Object>> queryDoctorList() throws SQLException{
 		
-		String sql = " SELECT id, username, name, icon, title, section, adept, chat_cost, hospital, city FROM doctor ";
+		String sql = " SELECT id, username, name, icon, title, section, bio, adept, chat_cost, hospital, city FROM doctor ";
 		DBUtil dbUtil = new DBUtil(sql);
 
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
@@ -43,6 +43,7 @@ public class DoctorService {
 				map.put("icon", result.getString("icon"));
 				map.put("title", result.getString("title"));
 				map.put("section", result.getString("section"));
+				map.put("bio", result.getString("bio"));
 				map.put("adept", result.getString("adept"));
 				map.put("chatCost", result.getString("chat_cost"));
 				map.put("hospital", result.getString("hospital"));
@@ -65,7 +66,7 @@ public class DoctorService {
 	//根据医生id查询医生详细信息
 	public Doctor queryDoctorById(Integer doctorId) throws SQLException{
 		
-		String sql = " SELECT name, username, icon, title, section, hospital, chat_cost, call_cost, seniority, adept, comment_count FROM doctor WHERE id = "+doctorId+" ";
+		String sql = " SELECT name, username, icon, title, section, hospital, chat_cost, call_cost, seniority, bio, adept, comment_count FROM doctor WHERE id = "+doctorId+" ";
 		DBUtil dbUtil = new DBUtil(sql);
 		
 		
@@ -87,6 +88,7 @@ public class DoctorService {
 				String chatCost = result.getString("chat_cost");
 				String callCost = result.getString("call_cost");
 				String seniority = result.getString("seniority");
+				String bio = result.getString("bio");
 				String adept = result.getString("adept");
 				String commentCount = result.getString("comment_count");
 				
@@ -99,6 +101,7 @@ public class DoctorService {
 				doctor.setChatCost(chatCost);
 				doctor.setCallCost(callCost);
 				doctor.setSeniority(seniority);
+				doctor.setBio(bio);
 				doctor.setAdept(adept);
 				doctor.setCommentCount(commentCount);
 				
@@ -264,7 +267,7 @@ public class DoctorService {
 	//Random Select Two Doctor
 	public List<Map<String, Object>> queryDoctorRandomFive() throws SQLException{
 		
-		String sql = " select id, username, `name`, icon, title, section, adept, chat_cost, hospital from doctor order by rand() limit 5 ";
+		String sql = " select id, username, `name`, icon, title, section, bio, adept, chat_cost, hospital from doctor order by rand() limit 5 ";
 		DBUtil dbUtil = new DBUtil(sql);
 		
 		
@@ -285,6 +288,7 @@ public class DoctorService {
 				map.put("icon", result.getString("icon"));
 				map.put("title", result.getString("title"));
 				map.put("section", result.getString("section"));
+				map.put("bio", result.getString("bio"));
 				map.put("adept", result.getString("adept"));
 				map.put("chatCost", result.getString("chat_cost"));
 				map.put("hospital", result.getString("hospital"));

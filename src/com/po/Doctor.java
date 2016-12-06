@@ -39,7 +39,9 @@ public class Doctor {
 	
 	private String seniority;//资历
 	
-	private String adept;//擅长领域
+	private String bio;//简介
+	
+	private String adept;//擅长
 	
 	private String commentCount;//被评论的次数
 
@@ -131,6 +133,14 @@ public class Doctor {
 		this.seniority = seniority;
 	}
 
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
 	public String getAdept() {
 		return adept;
 	}
@@ -151,8 +161,8 @@ public class Doctor {
 	public String toString() {
 		return "Doctor [id=" + id + ", name=" + name + ", username=" + username + ", password=" + password + ", icon="
 				+ icon + ", title=" + title + ", section=" + section + ", hospital=" + hospital + ", chatCost="
-				+ chatCost + ", callCost=" + callCost + ", seniority=" + seniority + ", adept=" + adept + ", commentCount="
-				+ commentCount + "]";
+				+ chatCost + ", callCost=" + callCost + ", seniority=" + seniority + ", bio=" + bio + ", adept=" + adept
+				+ ", commentCount=" + commentCount + "]";
 	}
-
+	
 }
