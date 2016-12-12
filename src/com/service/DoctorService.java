@@ -264,10 +264,10 @@ public class DoctorService {
 	
 	
 	
-	//Random Select Two Doctor
+	//Random Select Three Doctor
 	public List<Map<String, Object>> queryDoctorRandomFive() throws SQLException{
 		
-		String sql = " select id, username, `name`, icon, title, section, bio, adept, chat_cost, hospital from doctor order by rand() limit 5 ";
+		String sql = " select id, username, `name`, icon, title, section, bio, adept, chat_cost, hospital from doctor order by rand() limit 3 ";
 		DBUtil dbUtil = new DBUtil(sql);
 		
 		
