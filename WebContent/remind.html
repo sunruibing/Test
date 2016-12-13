@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--第三方js-->
+<script src="assets/js/doctor/jquery-3.1.0.min.js"></script>
+<script src="https://cdn.bootcss.com/socket.io/1.4.5/socket.io.min.js"></script>
+<script src='assets/js/doctor/jmessage-sdk-web.min.js'></script>
+<script src="assets/js/doctor/jquery.cookies.2.2.0.js"></script>
+
+<!--自定义css-->
+<link rel="stylesheet" rel="stylesheet"
+	href="assets/css/doctor/core.css" />
+<link rel="stylesheet" href="assets/css/doctor/talk.css" />
+<link rel="stylesheet" href="assets/css/doctor/center.css" />
+<link rel="stylesheet" href="assets/css/doctor/doctor.css" />
+<link rel="stylesheet" href="assets/css/doctor/pintuer.css" />
+
+<!--自定义js-->
+<script type="text/javascript" src="assets/js/doctor/index.js"></script>
+<script type="text/javascript" src="assets/js/doctor/core.js"></script>
+<script type="text/javascript" src="assets/js/doctor/showdate.js"></script>
+</head>
+<body>
+	<div
+		style="width: 100%; height: 30px; padding-top: 10px; padding-bottom: 22px">
+		<div style="float: right;">
+			<input type="text" id="ptuser"
+				style="border-radius: 12px; border: 1px solid #e0e0e0; width: 100px; height: 24px; outline: none; text-indent: 10px;"
+				placeholder='搜索患者' /> <input type="button" value="搜索" id="seek"
+				style="width: 50px; height: 24px; border: 1px solid #6fc8e6; border-radius: 12px; outline: none; background-color: #6fc8e6" />
+		</div>
+	</div>
+	<table class="index_tab">
+		<tr class="tr_top">
+			<td class="td_center" width="5%">序号</td>
+			<td width="10%">患者</td>
+			<td width="10%">性别</td>
+			<td width="15%">手机号</td>
+			<td width="20%">订单号</td>
+			<td width="20%">就诊日期</td>
+			<td width="20%">操作</td>
+		</tr>
+		<tbody id="remindTbody">
+
+		</tbody>
+	</table>
+	<div id="remind">
+		<!--remind开始-->
+		<form name="reg_testdate" class="sum">
+
+			<div class="sum_divstyle">
+				<span>开始时间:</span> <input type="text" name="startDay" id="startDay"
+					placeholder="2016-11-22" onClick="return Calendar('startDay');"
+					class="text_time" />
+			</div>
+			<div class="sum_divstyle">
+				<span>结束时间:</span> <input name="endDay" type="text" id="endDay"
+					placeholder="2016-11-22" onClick="return Calendar('endDay');"
+					class="text_time" />
+			</div>
+			<div class="sum_divstyle">
+				<span>用药时间:</span> <input type="text" class="time1" name="time1"
+					placeholder="20:08" />
+			</div>
+			<div class="sum_divstyle">
+				<span class="yongyaotitle">用药编辑:</span>
+				<textarea class="yongyaotext" name="content1"></textarea>
+			</div>
+			<div class="sum_divstyle">
+				<span>用药时间:</span> <input type="text" class="time2" name="time2"
+					placeholder="02:08" />
+			</div>
+			<div class="sum_divstyle">
+				<span class="yongyaotitle">用药编辑:</span>
+				<textarea class="yongyaotext" name="content2"></textarea>
+			</div>
+			<div class="sum_divstyle">
+				<span>用药时间:</span> <input type="text" class="time3" name="time3"
+					placeholder="20:08" />
+			</div>
+			<div class="sum_divstyle">
+				<span class="yongyaotitle">用药编辑:</span>
+				<textarea class="yongyaotext" name="content3"></textarea>
+			</div>
+			<div class="sumtijiao">
+				<button type="submit" class="sumbaocun">保存</button>
+				<button type="button" class="sumquxiao">取消</button>
+			</div>
+		</form>
+	</div>
+
+	<script type="text/javascript" src="assets/js/doctor/time.js"></script>
+	<script type="text/javascript" src="assets/js/doctor/data.js"></script>
+</body>
+</html>
+

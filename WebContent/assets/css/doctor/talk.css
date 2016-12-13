@@ -1,0 +1,169 @@
+/*閼卞﹤銇夌粣妤�褰涢弽宄扮础*/
+.chat{
+	display:none;
+	width: 500px;
+	height: 450px;
+	left:400px;
+	top: 200px;
+    margin: 0 auto;
+	box-shadow: 10px 10px 55px #777;
+	border-radius: 3px;
+	background-color: #F0FFFF;
+	z-index: 900;	
+	position: absolute;
+}
+/*閻€劍鍩涢崥锟�*/
+.name {
+	background: #6fc8e6;
+	height: 28px;
+	color: #323232;
+	line-height: 25px;
+	font-size: 13px;
+	padding: 0 10px;
+	overflow:hidden;
+	border-radius: 3px;	
+	cursor: move;
+	
+}
+/*閻€劍鍩涢崥宥勮厬閸忔娊妫撮幐澶愭尦閺嶅洨顒�*/
+.name a{
+	cursor:default;
+}
+/*娴兼俺鐦介崠锟�*/
+.chatContent{
+	height: 300px;
+	width: 499px;
+	border: 1px solid silver;
+	overflow-y: scroll;
+	background-color: #FFFFFF;
+}
+/*鏉堟挸鍙嗗锟�*/
+#sendMsg{
+	width:496px;
+	height:100px;
+	background: #fff;
+	position: absolute;
+	resize: none;
+	outline:none;
+	border-radius: 3px;	
+	border: none;/*閸樺娅庢妯款吇鏉堣顢�*/
+}
+/*閸欐垿锟戒焦瀵滈柦锟�*/
+#send{
+	width: 50px;
+	height: 25px;
+	margin-left: 440px;
+	margin-top:78px;
+	line-height: 25px;
+	border-radius: 6px;
+	background-color:#6fc8e6;
+	border-left: 0px;/*閸樻槒绔熷锟�*/
+	border-top: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+}	
+.username{
+	float:left;
+    line-height: 28px;
+}
+.name img{
+	margin-top: 8px;
+}
+.ema{
+	left: 5px;
+	position: absolute;
+}
+.username{
+	margin-top: 2px;
+	margin-left: 14px;
+	position: relative;
+	}
+/*閼卞﹤銇夐崘鍛啇閺嶅嘲绱� */
+.chatter_msg_item {
+	position: relative;
+	margin: 5px 0 8px 0;
+	padding: 8px 10px;
+	max-width: 60%;
+	display: inline-block; /* 閹貉冨煑閹广垼顢� */
+	clear: both; /*濞撳懘娅庨弽宄扮础  */
+	background-color: #c6eaf3;
+}
+/* 閼卞﹤銇夐崘鍛啇鐏忓繋绗佺憴鎺撶壉瀵拷 */
+.chatter_msg_item .chatter_avatar {
+	position: absolute;
+	top: 0;
+}
+/* 閻€劍鍩涙导姘崇樈閺嶅嘲绱� */
+.chatter_msg_item.chatter_msg_item_admin .chatter_avatar {
+	left: -45px;
+}
+/* 閸栬崵鏁撴导姘崇樈閺嶅嘲绱� */
+.chatter_msg_item.chatter_msg_item_user .chatter_avatar {
+	right: -45px;
+}
+/* 婢舵潙鍎氶弽宄扮础 */
+.chatter_msg_item .chatter_avatar img {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+}
+/* 閻€劍鍩涙导姘崇樈閺嶅嘲绱� */
+.chatter_msg_item.chatter_msg_item_admin {
+	margin-left: 60px;
+	float: left;
+	border-radius: 8px;
+	background-color: bisque;
+}
+/* 閸栬崵鏁撴导姘崇樈閺嶅嘲绱� */
+.chatter_msg_item.chatter_msg_item_user {
+	margin-right: 60px;
+	float: right;
+	background-color: #b2e281;
+	border-radius: 8px;
+}
+/*閻€劍鍩涙导姘崇樈div */
+.chatter_msg_item.chatter_msg_item_admin:before {
+	content: '';
+	position: absolute;
+	top: 15px;
+	left: -12px;
+	z-index: 10;
+	border: 6px solid transparent;
+	border-right-color: bisque;
+}
+/* 閸栬崵鏁撴导姘崇樈閸愬懎顔恉iv */
+.chatter_msg_item.chatter_msg_item_user:before {
+	content: '';
+	position:absolute;
+	top: 15px;
+	right: -12px;
+	z-index: 10;
+	border: 6px solid transparent;
+	border-left-color: #b2e281;
+}
+/*閹恒儲鏁归惃鍓噓pia閺嶅嘲绱�  */
+#talkImg{
+	width: 150px;
+	height: 150px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
